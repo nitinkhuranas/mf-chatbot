@@ -1,0 +1,8 @@
+.tabs {
+    display: flex;
+    margin: 10px;
+}
+
+.tabs > div {
+    margin: 10px;
+}

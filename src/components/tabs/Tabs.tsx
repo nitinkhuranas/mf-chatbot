@@ -1,19 +1,21 @@
 import Link from 'next/link';
+import styles from './Tabs.module.css'
 
 export default function Tabs() {
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link href="/">Home</Link>
-        </li>
-        <li>
-          <Link href="/shops">Shops</Link>
-        </li>
-        <li>
-          <Link href="/offers">Offers</Link>
-        </li>
-      </ul>
+    <nav className={styles.tabs}>
+      <div>
+        <Link href="/dashboard">Home</Link>
+      </div>
+      <div>
+        <Link href="/fundList">Funds</Link>
+      </div>
+      <div>
+        <Link href="/search">Search</Link>
+      </div>
+      <div>
+        <Link href="/chat">Chat</Link>
+      </div>
     </nav>
   )
 }
