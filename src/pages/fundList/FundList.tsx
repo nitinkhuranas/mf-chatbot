@@ -1,8 +1,7 @@
-import FundCard from "@/components/FundCard";
+import FundCard from "@/components/fundCard";
 import styles from './FundList.module.css'
 import { useEffect, useState } from "react";
 
-const funds1 = [1, 2, 3, 4, 5, 6, 6, 8, 9, 10];
 export default function FundList() {
   const [funds, setFunds] = useState([]);
   const fetchFundsList = async () => {
@@ -12,7 +11,9 @@ export default function FundList() {
       setFunds(parsedResponse);
     } catch (ex) {
       console.log("Failed to fetch list");
-      setFunds(funds1);
+      const fetchResponse = await fetch('top-funds.json');
+      const parsedResponse = await fetchResponse.json();
+      setFunds(parsedResponse.data.top_fund_list);
     }
   }
 
@@ -23,7 +24,7 @@ export default function FundList() {
   return (
     <div className={styles.list}>
       {funds.map((fund) => {
-        return <FundCard key={fund} cardData={fund} />
+        return <FundCard key={fund} fundData={fund.scheme.details} />
       })}
     </div>
   )

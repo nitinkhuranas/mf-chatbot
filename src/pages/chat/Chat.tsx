@@ -1,22 +1,43 @@
-import { ChangeEvent, useState } from "react";
-import Textarea from "@mui/material/TextareaAutosize";
+import { ChangeEvent, KeyboardEventHandler, useState } from "react";
+import { TextField } from "@mui/material";
 
 export default function Chat() {
   const [chatText, setChatText] = useState("");
+  const [messages, setMessages] = useState([])
 
-  let handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    //convert input text to lower case
-    var lowerCase = e.target.value.toLowerCase();
-    setChatText(lowerCase);
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    var text = e.target.value;
+    setChatText(text);
+  };
+
+  const handleOnKeyPress = (e) => {
+    if (e.keyCode === 13) {
+      messages.push(chatText);
+      setMessages(messages);
+      setChatText("");
+    }
   };
 
   return (
     <div>
-      <Textarea
-        minRows={10}
+      <TextField
+        id="outlined-basic"
+        variant="outlined"
+        fullWidth
+        label="Chat"
         onChange={handleOnChange}
+        onKeyDown={handleOnKeyPress}
         value={chatText}
       />
+      <div>
+        {messages.map((message, index) => {
+          return (
+            <div key={index}>
+              {message}
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
