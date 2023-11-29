@@ -1,8 +1,8 @@
 import FundCard from "@/components/fundCard";
-import styles from './FundList.module.css'
+import styles from './FundsList.module.css'
 import { useEffect, useState } from "react";
 
-export default function FundList() {
+export default function FundsList({ listData }) {
   const [funds, setFunds] = useState([]);
   const fetchFundsList = async () => {
     try {
@@ -18,8 +18,13 @@ export default function FundList() {
   }
 
   useEffect(() => {
-    fetchFundsList();
-  }, []);
+    if (listData) {
+      setFunds(listData);
+    }
+    else {
+      fetchFundsList();
+    }
+  }, [listData]);
 
   return (
     <div className={styles.list}>

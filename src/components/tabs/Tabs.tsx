@@ -8,7 +8,7 @@ export default function Tabs() {
         <Link href="/dashboard">Home</Link>
       </div>
       <div>
-        <Link href="/fundList">Funds</Link>
+        <Link href="/fundsList">Funds</Link>
       </div>
       <div>
         <Link href="/search">Search</Link>
